@@ -33,10 +33,6 @@ void test_buffer() {
     b.draw();
 }
 
-/**
- * Test the `Shape` object by creating one of each type (besides "empty"), and
- * tiling them on a buffer.
- */
 void test_shape() {
     Buffer b(TERM_SIZE_X, TERM_SIZE_Y);
     
@@ -59,11 +55,7 @@ void test_shape() {
 int main() {
     //test_buffer();
     
-    // ------------------------------------------------------------------------
-    
     //test_shape();
-    
-    // ------------------------------------------------------------------------
     
     // animate  neighborhood
     
@@ -71,7 +63,5 @@ int main() {
     unsigned int size_y = TERM_SIZE_Y/Shape::size_y;
     Neighborhood(size_x, size_y).animate(1000);
 
-    // ------------------------------------------------------------------------
-    
     return 0;  // success
 }
