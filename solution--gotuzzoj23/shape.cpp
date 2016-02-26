@@ -5,17 +5,6 @@
 //  Created by Jose Gotuzzo, Robert Gonzalez, Griffin Yee on 2/26/16.
 //  Copyright © 2016 Jose Gotuzzo. All rights reserved.//
 
-/* ----------------------------------------------------------------------------
- * Copyright &copy; 2016 YOUR_NAME <YOUR_EMAIL>
- * Released under the [MIT License] (http://opensource.org/licenses/MIT)
- * ------------------------------------------------------------------------- */
-
-/**
- * Implements `shape.h`.
- */
-
-// TODO: `#include`s for system headers, if necessary
-
 #include<iostream>
 #include<cstdlib>
 #include "shape.h"
@@ -25,44 +14,19 @@ using std::cout;
 using std::cin;
 using std::string;
 
-// TODO: `#include`s for other local headers, if necessary
-
-// ----------------------------------------------------------------------------
 Shape::Shape(const string & type)
 {
     setType(type);
 }
-/**
- * The constructor.
- *
- * Must initialize `type_`, and `type_art_`.
- *
- * Notes:
- * - I suggest calling `setType` in the body of the constructor, to
- *   avoid duplicating code.
- */
+
 
 Shape::~Shape() = default;
-
-/**
- * The destructor.
- *
- * Since there's no dynamically allocated memory to `delete`, this may
- * be left out, or it may be implemented with
- * ```
- * Shape::~Shape() = default;
- * ```
- * (valid since C++ 11).
- */
 
 
 string Shape::getType()
 {
     return type_;
 }
-/**
- * Return `type_`.
- */
 
 void Shape::setType(const std::string & type)
 {
@@ -88,31 +52,12 @@ void Shape::setType(const std::string & type)
         exit(1);
     }
 }
-/**
- * Set `type_` to `type`, and set `type_art_` to the appropriate value.
- *
- * If the passed `type` is not valid, write
- * ```
- * "ERROR: `Shape::setType`: invalid type\n"
- * ```
- * to `cerr` and `exit(1)`.
- */
-
 
 void Shape::drawToBuffer(Buffer & b, unsigned int x, unsigned int y) const
 {
     b.set(x, y, type_art_);
 }
-/**
- * Draw `type_art_` onto the `Buffer` at position `x, y`.
- *
- * Notes:
- * - This (primarily) is what
- *   ```
- *   void Buffer::set(unsigned int, unsigned int, std::string);
- *   ```
- *   is for.
- */
+
 bool Shape::isHappy( const Neighborhood & n,
                     unsigned int pos_x,
                     unsigned int pos_y) const {
@@ -145,34 +90,4 @@ bool Shape::isHappy( const Neighborhood & n,
     return    ( different || alike )
     && ( different == 0 || alike / different >= RATIO_ALIKE_HAPPY )
     && ( alike == 0 || different / alike >= RATIO_DIFFERENT_HAPPY );
-}
-/**
- * Return `true` if the shape is happy (i.e. not willing to move), and
- * `false` otherwise.
- *
- * - More specifically, return `true` if and only if the shape
- *     - has more than 0 "triangle" or "square" neighbors
- *     - and the ratio of like neighbors to unlike (different)
- *       neighbors is greater than or equal to `RATIO_ALIKE_HAPPY`
- *       (from `constants.h`)
- *     - and the ratio of unlike (different) neighbors to like
- *       neighbors is greater than or equal to `RATIO_DIFFERENT_HAPPY`
- *       (from `constants.h`)
- *
- * Notes:
- * - Use `n.get(...).getType() == "..."` to determine the type of the
- *   `Shape` at a given position.
- * - Be careful not to look for neighbors outside the bounds of the
- *   `Neighborhood`.
- * - Be careful not to have a shape count itself, when trying to count
- *   its neighbors.
- * - Be careful not to count "empty" shapes as unlike (different)
- *   shapes ("empty" shapes should not count as either like or
- *   unlike).
- * - Be careful of possible division by 0 when testing the ratios of
- *   like and unlike shapes.
- */
-;
-
-// TODO: implementations for all functions in `class Buffer`
-
+};
